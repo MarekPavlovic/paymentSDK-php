@@ -23,6 +23,7 @@ curl -X POST -H 'Content-type: application/json' \
 FAILED_TESTS=$(ls -1q tests/_output/*.fail.png | wc -l)
 
 
+
 # send link to the report into slack chat room
 curl -X POST -H 'Content-type: application/json' --data "{
     'attachments': [
@@ -35,6 +36,7 @@ curl -X POST -H 'Content-type: application/json' --data "{
         }
     ], 'channel': '${CHANNEL}'
 }"  ${SLACK_ROOMS};
+
 
 
 
