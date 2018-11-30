@@ -1,4 +1,6 @@
 #!/bin/bash
+# This script will upload logs to the report repository
+# And if 'fail' parameter is passed it will send the notification
 set -e # Exit with nonzero exit code if anything fails
 
 export REPO_NAME='reports'
@@ -36,6 +38,8 @@ git push -q https://${GITHUB_TOKEN}@github.com/wirecard/${REPO_NAME}.git master
 #save commit hash
 export SCREENSHOT_COMMIT_HASH=$(git rev-parse --verify HEAD)
 
-#send slack notification
-cd ..
-bash .bin/send-notify.sh
+if [[ $1 == 'fail' ]]; then
+    #send slack notification
+    cd ..
+    bash .bin/send-notify.sh
+fi
