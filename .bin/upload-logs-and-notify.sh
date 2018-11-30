@@ -27,7 +27,9 @@ fi
 
 #copy report files
 cp tests/_output/*.html ${DATE_FOLDER}
-cp tests/_output/*.fail.png ${DATE_FOLDER}
+if [[ $1 == 'fail' ]]; then
+    cp tests/_output/*.fail.png ${DATE_FOLDER}
+fi
 
 cd ${REPO_NAME}
 #push report files to the repository
